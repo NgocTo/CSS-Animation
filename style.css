@@ -10,6 +10,7 @@
 /*2.  TABLET */
 /*3.  PHONE */
 /****************************************/
+/* MIXINS */
 /* DESKTOP */
 /* GENERAL */
 html {
@@ -84,6 +85,10 @@ li {
   font-weight: normal;
 }
 /* MAIN */
+#main .page-wrapper {
+  background-color: #fff;
+  z-index: -10;
+}
 #sky-wrapper {
   background: linear-gradient(to bottom, #e2f2ed, #ffffff);
   width: 100%;
@@ -91,6 +96,7 @@ li {
   padding-bottom: 40%;
   border: 2px solid #ff8967;
   border-bottom: none;
+  position: relative;
 }
 #sun div {
   width: 7%;
@@ -99,20 +105,91 @@ li {
   background-color: #fff;
   border-radius: 50%;
   position: absolute;
-  left: 30%;
-  top: 2em;
+  left: 200px;
+  top: 100px;
   box-shadow: 0 0 1.5em 1em #fff;
 }
-.cloud div {
-  position: relative;
+.cloud {
+  position: absolute;
   top: 2em;
   width: 17%;
   height: 0;
   padding-bottom: 5%;
   border-radius: 50%;
   background-color: #fff;
+  -webkit-animation: cloudmove 25s linear infinite;
+  -moz-animation: cloudmove 25s linear infinite;
+  animation: cloudmove 25s linear infinite;
 }
-.cloud div::before {
+@-moz-keyframes cloudmove {
+  50% {
+    transform: translateX(-70%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@-webkit-keyframes cloudmove {
+  50% {
+    transform: translateX(-70%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes cloudmove {
+  50% {
+    transform: translateX(-70%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.cloud:hover {
+  -webkit-animation: cloudwiggle 1s;
+  -moz-animation: cloudwiggle 1s;
+  animation: cloudwiggle 1s;
+}
+@-moz-keyframes cloudwiggle {
+  10%,
+  90% {
+    transform: rotate(5deg);
+  }
+  30%,
+  80% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+@-webkit-keyframes cloudwiggle {
+  10%,
+  90% {
+    transform: rotate(5deg);
+  }
+  30%,
+  80% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+@keyframes cloudwiggle {
+  10%,
+  90% {
+    transform: rotate(5deg);
+  }
+  30%,
+  80% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+.cloud::before {
   content: '';
   position: absolute;
   left: 12%;
@@ -122,7 +199,7 @@ li {
   border-radius: 50%;
   background-color: #fff;
 }
-.cloud div::after {
+.cloud::after {
   content: '';
   position: absolute;
   left: 30%;
@@ -134,21 +211,240 @@ li {
 }
 #cloud1 {
   left: 10%;
-  top: 12em;
+  top: 40%;
+  animation-delay: 15s;
 }
 #cloud2 {
   left: 55%;
+  top: 10%;
 }
 #cloud3 {
   left: 85%;
-  top: 12em;
+  top: 65%;
+  animation-delay: 7s;
 }
 #ocean-wrapper {
+  position: relative;
   width: 100%;
   height: 0;
   padding-bottom: 45%;
   border: 2px solid #ff8967;
   border-top: none;
+}
+#ocean {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url(images/ocean.png);
+  background-position: 0px 0px;
+  background-repeat: repeat-x;
+  z-index: -5;
+  -webkit-animation: slide 20s ease-in infinite;
+  -moz-animation: slide 20s ease-in infinite;
+  animation: slide 20s ease-in infinite;
+}
+@-moz-keyframes slide {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@-webkit-keyframes slide {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes slide {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+/* BOAT */
+#boat-container {
+  width: 17%;
+  height: 0%;
+  padding-bottom: 10%;
+  position: absolute;
+}
+#draft {
+  position: relative;
+  width: 100%;
+  padding-bottom: 7%;
+  background-color: #392033;
+  transform: perspective(2px) rotateX(-1deg);
+  border: solid 4px #392033;
+  left: 20%;
+}
+/* FISH */
+.fish {
+  position: absolute;
+  width: 3%;
+  height: 0;
+  padding-bottom: 3%;
+  background-color: rgba(254, 192, 81, 0.8);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
+.fish div {
+  width: 150%;
+  position: absolute;
+  padding-bottom: 150%;
+  overflow: hidden;
+  left: -75%;
+  top: 25%;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+}
+.fish div::before {
+  content: "";
+  position: absolute;
+  width: 75%;
+  height: 75%;
+  top: -25%;
+  left: -55%;
+  transform-origin: 0 100%;
+  background-color: rgba(254, 192, 81, 0.8);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+}
+.fish {
+  -webkit-animation: fishmove 25s linear infinite;
+  -moz-animation: fishmove 25s linear infinite;
+  animation: fishmove 25s linear infinite;
+}
+@-moz-keyframes fishmove {
+  50% {
+    transform: translateX(-70%);
+  }
+  100% {
+    transform: translateX();
+  }
+}
+@-webkit-keyframes fishmove {
+  50% {
+    transform: translateX(-70%);
+  }
+  100% {
+    transform: translateX();
+  }
+}
+@keyframes fishmove {
+  50% {
+    transform: translateX(-70%);
+  }
+  100% {
+    transform: translateX();
+  }
+}
+.fish:hover {
+  -webkit-animation: fishwiggle 1s;
+  -moz-animation: fishwiggle 1s;
+  animation: fishwiggle 1s;
+}
+@-moz-keyframes fishwiggle {
+  50% {
+    transform: scale(0.75);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes fishwiggle {
+  50% {
+    transform: scale(0.75);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes fishwiggle {
+  50% {
+    transform: scale(0.75);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+#fish1 {
+  left: 10%;
+  top: 15%;
+}
+#fish2 {
+  left: 55%;
+  top: 70%;
+}
+#fish3 {
+  left: 25%;
+  top: 90%;
+}
+#fish4 {
+  left: 70%;
+  top: 40%;
+  -webkit-transform: rotate(225deg);
+  -moz-transform: rotate(225deg);
+  -ms-transform: rotate(225deg);
+  -o-transform: rotate(225deg);
+}
+#fish5 {
+  left: 95%;
+  top: 60%;
+  -webkit-transform: rotate(225deg);
+  -moz-transform: rotate(225deg);
+  -ms-transform: rotate(225deg);
+  -o-transform: rotate(225deg);
+}
+/* BUBBLES */
+#bubble-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  visibility: hidden;
+}
+.bubble {
+  position: absolute;
+  bottom: -3em;
+  transition: all 5s;
+  -webkit-animation: floatup 10s ease-out infinite;
+  -moz-animation: floatup 10s ease-out infinite;
+  animation: floatup 10s ease-out infinite;
+}
+@-moz-keyframes floatup {
+  100% {
+    transform: translateY(-1000%);
+  }
+}
+@-webkit-keyframes floatup {
+  100% {
+    transform: translateY(-1000%);
+  }
+}
+@keyframes floatup {
+  100% {
+    transform: translateY(-1000%);
+  }
+}
+#bubble1 {
+  left: 70%;
+}
+#bubble2 {
+  left: 15%;
+  width: 2%;
+}
+#bubble3 {
+  right: 15%;
+  width: 3%;
+  animation-delay: 4s;
+}
+#bubble4 {
+  left: 5%;
+  width: 4%;
+  animation-delay: 8s;
 }
 /* FOOTER */
 #footer p,
@@ -156,6 +452,7 @@ li {
   display: inline-block;
 }
 #social-links {
-  float: right;
+  margin: 0.25em;
   font-size: 2em;
+  float: right;
 }
