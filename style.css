@@ -1,14 +1,12 @@
 /****************************************/
 /* CONTENT */
-/*1.  DESKTOP */
-/*1a. GENERAL */
-/*1b. HEADER */
-/*1c. BANNER */
-/*1d. MAIN SESSIONS */
-/*1d. FORM */
-/*1d. FOOTER */
-/*2.  TABLET */
-/*3.  PHONE */
+/*1 GENERAL */
+/*2. HEADER */
+/*3. MAIN */
+/*3a. SKY */
+/*3b. OCEAN */
+/*4. FOOTER */
+/*5.  MEDIA QUERY */
 /****************************************/
 /* MIXINS */
 /* DESKTOP */
@@ -31,7 +29,6 @@ body {
   max-width: 1024px;
   margin: 0 auto;
   position: relative;
-  overflow: hidden;
 }
 .hidden {
   position: absolute;
@@ -86,19 +83,23 @@ li {
 }
 /* MAIN */
 #main .page-wrapper {
+  border: 2px solid #ff8967;
+  overflow: hidden;
   background-color: #fff;
-  z-index: -10;
 }
+/* SKY */
 #sky-wrapper {
   background: linear-gradient(to bottom, #e2f2ed, #ffffff);
   width: 100%;
   height: 0;
   padding-bottom: 40%;
-  border: 2px solid #ff8967;
-  border-bottom: none;
   position: relative;
+  -webkit-transition: all 2s fadein;
+  -moz-transition: all 2s fadein;
+  -o-transition: all 2s fadein;
+  transition: all 2s fadein;
 }
-#sun div {
+#sun {
   width: 7%;
   height: 0;
   padding-bottom: 7%;
@@ -108,6 +109,10 @@ li {
   left: 200px;
   top: 100px;
   box-shadow: 0 0 1.5em 1em #fff;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
 }
 .cloud {
   position: absolute;
@@ -117,6 +122,7 @@ li {
   padding-bottom: 5%;
   border-radius: 50%;
   background-color: #fff;
+  box-shadow: 0 0 0.5em 0.5em #fff;
   -webkit-animation: cloudmove 25s linear infinite;
   -moz-animation: cloudmove 25s linear infinite;
   animation: cloudmove 25s linear infinite;
@@ -198,6 +204,7 @@ li {
   height: 80%;
   border-radius: 50%;
   background-color: #fff;
+  box-shadow: 0 0 0.5em 0.5em #fff;
 }
 .cloud::after {
   content: '';
@@ -208,6 +215,7 @@ li {
   height: 100%;
   border-radius: 50%;
   background-color: #fff;
+  box-shadow: 0 0 0.5em 0.5em #fff;
 }
 #cloud1 {
   left: 10%;
@@ -223,39 +231,48 @@ li {
   top: 65%;
   animation-delay: 7s;
 }
+/* OCEAN */
 #ocean-wrapper {
   position: relative;
   width: 100%;
   height: 0;
   padding-bottom: 45%;
-  border: 2px solid #ff8967;
-  border-top: none;
 }
 #ocean {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url(images/ocean.png);
-  background-position: 0px 0px;
-  background-repeat: repeat-x;
-  z-index: -5;
-  -webkit-animation: slide 20s ease-in infinite;
-  -moz-animation: slide 20s ease-in infinite;
-  animation: slide 20s ease-in infinite;
+  margin: 0;
+  width: 800%;
+  padding-bottom: 50%;
+  top: -8%;
+  border-width: 0px;
+  background: url("images/ocean.png");
+  filter: drop-shadow(0 -2px 5px #b9eae4);
+  -webkit-animation: slide 5s linear infinite;
+  -moz-animation: slide 5s linear infinite;
+  animation: slide 5s linear infinite;
 }
 @-moz-keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-25%);
   }
 }
 @-webkit-keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-25%);
   }
 }
 @keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-25%);
   }
 }
 /* BOAT */
@@ -264,23 +281,118 @@ li {
   height: 0%;
   padding-bottom: 10%;
   position: absolute;
+  left: 20%;
+  top: -15%;
+  transform-origin: bottom;
+  -webkit-animation: cloudwiggle 5s infinite, boatmove 10s infinite;
+  -moz-animation: cloudwiggle 5s infinite, boatmove 10s infinite;
+  animation: cloudwiggle 5s infinite, boatmove 10s infinite;
+}
+@-moz-keyframes boatmove {
+  50% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@-webkit-keyframes boatmove {
+  50% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes boatmove {
+  50% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 #draft {
   position: relative;
   width: 100%;
-  padding-bottom: 7%;
+  padding-bottom: 10%;
   background-color: #392033;
   transform: perspective(2px) rotateX(-1deg);
-  border: solid 4px #392033;
-  left: 20%;
+  box-shadow: 0 5px 5px 0 grey;
+}
+#draft:hover {
+  -webkit-animation: cloudwiggle 5s;
+  -moz-animation: cloudwiggle 5s;
+  animation: cloudwiggle 5s;
+}
+#column {
+  position: relative;
+  border-left: 3px solid #392033;
+  padding-bottom: 60%;
+  left: 45%;
+}
+#sail1 {
+  position: absolute;
+  left: -7%;
+  width: 50%;
+  padding-bottom: 55%;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+#sail1::before {
+  content: "";
+  position: absolute;
+  width: 170%;
+  height: 100%;
+  left: -70%;
+  background-color: #f16053;
+  transform-origin: top right;
+  -webkit-transform: rotate(-53deg);
+  -moz-transform: rotate(-53deg);
+  -ms-transform: rotate(-53deg);
+  -o-transform: rotate(-53deg);
+}
+#sail1:hover {
+  transform-origin: top right;
+  -webkit-transform: rotate(5deg);
+  -moz-transform: rotate(5deg);
+  -ms-transform: rotate(5deg);
+  -o-transform: rotate(5deg);
+}
+#sail2 {
+  position: absolute;
+  left: 49%;
+  width: 50%;
+  padding-bottom: 55%;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+#sail2::before {
+  content: "";
+  position: absolute;
+  width: 170%;
+  height: 100%;
+  background-color: #f16053;
+  transform-origin: top left;
+  -webkit-transform: rotate(50deg);
+  -moz-transform: rotate(50deg);
+  -ms-transform: rotate(50deg);
+  -o-transform: rotate(50deg);
+}
+#sail2:hover {
+  transform-origin: top right;
+  -webkit-transform: rotate(5deg);
+  -moz-transform: rotate(5deg);
+  -ms-transform: rotate(5deg);
+  -o-transform: rotate(5deg);
 }
 /* FISH */
 .fish {
   position: absolute;
-  width: 3%;
+  width: 2%;
   height: 0;
-  padding-bottom: 3%;
-  background-color: rgba(254, 192, 81, 0.8);
+  padding-bottom: 2%;
+  background-color: rgba(57, 32, 51, 0.8);
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -306,40 +418,75 @@ li {
   top: -25%;
   left: -55%;
   transform-origin: 0 100%;
-  background-color: rgba(254, 192, 81, 0.8);
+  background-color: rgba(57, 32, 51, 0.8);
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
 }
-.fish {
+#fish-wrapper1,
+#fish-wrapper2,
+#fish-wrapper3,
+#fish-wrapper4,
+#fish-wrapper5 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+#fish-wrapper1 {
   -webkit-animation: fishmove 25s linear infinite;
   -moz-animation: fishmove 25s linear infinite;
   animation: fishmove 25s linear infinite;
 }
 @-moz-keyframes fishmove {
-  50% {
-    transform: translateX(-70%);
-  }
   100% {
-    transform: translateX();
+    transform: translateX(120%);
   }
 }
 @-webkit-keyframes fishmove {
-  50% {
-    transform: translateX(-70%);
-  }
   100% {
-    transform: translateX();
+    transform: translateX(120%);
   }
 }
 @keyframes fishmove {
-  50% {
-    transform: translateX(-70%);
-  }
   100% {
-    transform: translateX();
+    transform: translateX(120%);
   }
+}
+#fish-wrapper2 {
+  -webkit-animation: fishmove 15s -22s linear infinite;
+  -moz-animation: fishmove 15s -22s linear infinite;
+  animation: fishmove 15s -22s linear infinite;
+}
+#fish-wrapper3 {
+  -webkit-animation: fishmove 20s -12s linear infinite;
+  -moz-animation: fishmove 20s -12s linear infinite;
+  animation: fishmove 20s -12s linear infinite;
+}
+#fish-wrapper4 {
+  -webkit-animation: fishmove1 30s linear infinite;
+  -moz-animation: fishmove1 30s linear infinite;
+  animation: fishmove1 30s linear infinite;
+}
+@-moz-keyframes fishmove1 {
+  100% {
+    transform: translateX(-110%);
+  }
+}
+@-webkit-keyframes fishmove1 {
+  100% {
+    transform: translateX(-110%);
+  }
+}
+@keyframes fishmove1 {
+  100% {
+    transform: translateX(-110%);
+  }
+}
+#fish-wrapper5 {
+  -webkit-animation: fishmove1 20s -5s linear infinite;
+  -moz-animation: fishmove1 20s -5s linear infinite;
+  animation: fishmove1 20s -5s linear infinite;
 }
 .fish:hover {
   -webkit-animation: fishwiggle 1s;
@@ -371,19 +518,16 @@ li {
   }
 }
 #fish1 {
-  left: 10%;
-  top: 15%;
+  top: 30%;
 }
 #fish2 {
-  left: 55%;
   top: 70%;
 }
 #fish3 {
-  left: 25%;
   top: 90%;
 }
 #fish4 {
-  left: 70%;
+  right: -5%;
   top: 40%;
   -webkit-transform: rotate(225deg);
   -moz-transform: rotate(225deg);
@@ -391,7 +535,7 @@ li {
   -o-transform: rotate(225deg);
 }
 #fish5 {
-  left: 95%;
+  right: -5%;
   top: 60%;
   -webkit-transform: rotate(225deg);
   -moz-transform: rotate(225deg);
@@ -399,17 +543,12 @@ li {
   -o-transform: rotate(225deg);
 }
 /* BUBBLES */
-#bubble-wrapper {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  position: absolute;
-  visibility: hidden;
-}
 .bubble {
   position: absolute;
-  bottom: -3em;
+  bottom: -11%;
   transition: all 5s;
+  visibility: visible;
+  z-index: 1;
   -webkit-animation: floatup 10s ease-out infinite;
   -moz-animation: floatup 10s ease-out infinite;
   animation: floatup 10s ease-out infinite;
@@ -417,20 +556,24 @@ li {
 @-moz-keyframes floatup {
   100% {
     transform: translateY(-1000%);
+    opacity: 0;
   }
 }
 @-webkit-keyframes floatup {
   100% {
     transform: translateY(-1000%);
+    opacity: 0;
   }
 }
 @keyframes floatup {
   100% {
     transform: translateY(-1000%);
+    opacity: 0;
   }
 }
 #bubble1 {
   left: 70%;
+  width: 4%;
 }
 #bubble2 {
   left: 15%;
@@ -446,13 +589,67 @@ li {
   width: 4%;
   animation-delay: 8s;
 }
+#bubble5 {
+  left: 17%;
+  width: 4%;
+}
+#weed {
+  position: absolute;
+  bottom: 0;
+}
 /* FOOTER */
 #footer p,
 #social-links {
   display: inline-block;
 }
+#footer p {
+  padding-left: 5%;
+}
 #social-links {
-  margin: 0.25em;
+  margin: 0.25em 5%;
   font-size: 2em;
   float: right;
+}
+/* MEDIA QUERY */
+@media all and (max-width: 768px) {
+  #header h1 {
+    font-size: 2.5em;
+    margin-left: 10%;
+  }
+}
+@media all and (max-width: 600px) {
+  #header h1 {
+    font-size: 2em;
+  }
+  .main-nav li {
+    font-size: 1em;
+  }
+  #logo {
+    margin-top: 2em;
+  }
+  #footer p {
+    font-size: 0.8em;
+  }
+}
+@media all and (max-width: 500px) {
+  #header h1 {
+    font-size: 1.5em;
+  }
+  #social-links {
+    font-size: 1.5em;
+  }
+}
+@media all and (max-width: 446px) {
+  #social-links {
+    margin: 0 5%;
+  }
+}
+@media all and (max-width: 392px) {
+  #header h1 {
+    font-size: 1.3em;
+    margin-left: 5%;
+  }
+  .main-nav li {
+    font-size: 0.8em;
+  }
 }
